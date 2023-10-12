@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %} Home {% endblock title %}
+
+{% block content %}
+
+<div class="col-sm-10 mt-5">
+    <!-- <h4 class="text-white my-4">Home</h4> -->
+    <!-- <div class="jumbotron jumbotron-fluid jumbo-color">
+        <div class="container">
+            <h1 class="display-4">This is Blog Title</h1>
+            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea in sint aut temporibus.
+                Excepturi, ab! Mollitia explicabo dignissimos quas officiis! Fugiat dolorum facere quia laborum ut
+                placeat, ipsa suscipit facilis.</p>
+        </div>
+    </div> -->
+
+    {% for post in posts %}
+    <div class="row align-items-md-stretch mt-3 mb-2">
+        <div class="col-md-10">
+            <div class="h-100 p-5 text-bg-dark rounded-3">
+                <h2>{{post.title}}</h2>
+                <p>{{post.desc}}</p>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'dashboard' %}">
+                    <button class="btn btn-outline-light" type="button">View blog</button>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
